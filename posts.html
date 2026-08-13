@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (1/2) · t3b07-bs-kb-real</title>
+  <meta name="description" content="t3b07-bs-kb-real에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://balsan-song-guide.namanavi.com/posts.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ *, *::before, *::after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+ html {
+ font-size: 16px;
+ scroll-behavior: smooth;
+ }
+ body {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+ background: #faf7f2;
+ color: #2c2c2c;
+ line-height: 1.7;
+ }
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 20px;
+ }
+ header {
+ background: #ffffff;
+ border-bottom: 1px solid #e8e0d4;
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ }
+ .header-inner {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ height: 64px;
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 20px;
+ }
+ .logo {
+ font-size: 1.4rem;
+ font-weight: 700;
+ color: #3a2a1a;
+ text-decoration: none;
+ }
+ .logo span {
+ color: #d4a373;
+ }
+ nav ul {
+ list-style: none;
+ display: flex;
+ gap: 28px;
+ }
+ nav a {
+ text-decoration: none;
+ color: #5a4a3a;
+ font-weight: 500;
+ font-size: 0.95rem;
+ transition: color 0.2s;
+ }
+ nav a:hover {
+ color: #d4a373;
+ }
+ .hamburger {
+ display: none;
+ flex-direction: column;
+ gap: 5px;
+ cursor: pointer;
+ padding: 8px;
+ }
+ .hamburger span {
+ width: 28px;
+ height: 3px;
+ background: #3a2a1a;
+ border-radius: 2px;
+ transition: all 0.3s;
+ }
+ .hero {
+ background: linear-gradient(135deg, #f5ebe0 0%, #e8d5c4 100%);
+ padding: 60px 0 50px;
+ text-align: center;
+ }
+ .hero-grid {
+ max-width: 800px;
+ margin: 0 auto;
+ }
+ .hero h1 {
+ font-size: 2.4rem;
+ font-weight: 700;
+ color: #3a2a1a;
+ margin-bottom: 16px;
+ line-height: 1.3;
+ }
+ .hero p {
+ font-size: 1.1rem;
+ color: #6a5a4a;
+ max-width: 600px;
+ margin: 0 auto 24px;
+ }
+ .info-section {
+ padding: 50px 0;
+ }
+ .info-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 32px;
+ }
+ .info-card {
+ background: #ffffff;
+ border-radius: 16px;
+ padding: 28px;
+ box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+ border: 1px solid #ede5d9;
+ }
+ .info-card h2 {
+ font-size: 1.3rem;
+ color: #3a2a1a;
+ margin-bottom: 16px;
+ padding-bottom: 12px;
+ border-bottom: 2px solid #d4a373;
+ }
+ .info-card ul {
+ list-style: none;
+ }
+ .info-card li {
+ padding: 8px 0;
+ display: flex;
+ align-items: flex-start;
+ gap: 10px;
+ color: #5a4a3a;
+ font-size: 0.95rem;
+ }
+ .info-card li::before {
+ content: "✓";
+ color: #d4a373;
+ font-weight: 700;
+ flex-shrink: 0;
+ }
+ .highlight-box {
+ background: #f5ebe0;
+ border-radius: 12px;
+ padding: 20px 24px;
+ margin: 28px 0 0;
+ border-left: 4px solid #d4a373;
+ }
+ .highlight-box p {
+ color: #5a4a3a;
+ font-size: 0.95rem;
+ }
+ .highlight-box strong {
+ color: #3a2a1a;
+ }
+ .tel-link {
+ display: inline-block;
+ background: #d4a373;
+ color: #ffffff;
+ padding: 10px 24px;
+ border-radius: 30px;
+ text-decoration: none;
+ font-weight: 600;
+ font-size: 1rem;
+ transition: background 0.2s;
+ margin-top: 8px;
+ }
+ .tel-link:hover {
+ background: #c4915f;
+ }
+ .faq-section {
+ padding: 50px 0;
+ background: #ffffff;
+ }
+ .faq-item {
+ border-bottom: 1px solid #ede5d9;
+ padding: 20px 0;
+ }
+ .faq-item h3 {
+ font-size: 1.05rem;
+ color: #3a2a1a;
+ margin-bottom: 8px;
+ cursor: default;
+ }
+ .faq-item p {
+ color: #6a5a4a;
+ font-size: 0.95rem;
+ line-height: 1.6;
+ }
+ @media (max-width: 768px) {
+ .hamburger {
+ display: flex;
+ }
+ nav ul {
+ display: none;
+ position: absolute;
+ top: 64px;
+ left: 0;
+ right: 0;
+ background: #ffffff;
+ flex-direction: column;
+ padding: 20px;
+ gap: 16px;
+ border-bottom: 1px solid #e8e0d4;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+ }
+ nav ul.open {
+ display: flex;
+ }
+ .hero h1 {
+ font-size: 1.8rem;
+ }
+ .info-grid {
+ grid-template-columns: 1fr;
+ gap: 20px;
+ }
+ .info-card {
+ padding: 20px;
+ }
+ }
+ footer {
+ background: #3a2a1a;
+ color: #e8d5c4;
+ text-align: center;
+ padding: 32px 20px;
+ font-size: 0.9rem;
+ }
+ footer a {
+ color: #d4a373;
+ text-decoration: none;
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (1/2) · t3b07-bs-kb-real">
+  <meta property="og:description" content="t3b07-bs-kb-real에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://balsan-song-guide.namanavi.com/posts.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <div class="header-inner">
+ <a href="/" class="logo">발산<span>노래방</span></a>
+ <nav>
+ <ul>
+ <li><a href="/">홈</a></li>
+ <li><a href="/info">정보</a></li>
+ <li><a href="/review">리뷰</a></li>
+ <li><a href="/tip">꿀팁</a></li>
+ </ul>
+ </nav>
+ <div class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+ 
+ 
+ 
+ </div>
+ </div>
+ </header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 38개 · 1/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260705-765.html">발산 노래방 내돈내산 핵심 이용 방법 및 팁</a>
+        <p class="post-item__summary">소비자의 관점에서 발산 노래방 내돈내산에 관한 최신 정보를 정확하게 이해하고 적극적으로 활용하는 것은 대단히 가치 있는 일입니다. 많은 이들이 노래방 관련 팁과 소소한 가이드를 실시간으로 교류하며 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0273.html">발산 노래방 내돈내산 경험담과 서울 중구 을지로 풋쌤 동대문점 마사지 정보</a>
+        <p class="post-item__summary">도심에서 즐거운 시간을 보내고 나면 온몸의 근육이 경직되어 피로가 몰려오는 경우가 많습니다. 특히 발산 노래방 내돈내산 후기를 찾아보는 분들처럼 활기찬 모임 뒤에는 적절한 휴식이 필수적입니다. 과도</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0274.html">발산 노래방 내돈내산 후기 검증과 마포/합정 인디 소셜 라운지 가이드 활용법</a>
+        <p class="post-item__summary">흔히들 발산 노래방 내돈내산 후기만 보고 장소를 결정하면 실패가 없다고 생각하는 경우가 많습니다. 하지만 이는 온라인상의 짧은 글에만 의존한 위험한 판단일 수 있으며, 개인의 취향은 모두 다르다는 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0275.html">발산 노래방 내돈내산 검색과 마포 유흥 투명 정찰제 가격 정보 디렉토리의 중요성</a>
+        <p class="post-item__summary">모임을 준비할 때 가장 먼저 충족되어야 할 조건은 예산의 명확성과 투명한 비용 지불입니다. 간혹 발산 노래방 내돈내산 관련 정보들을 보며 가격 불확실성에 고통받는 이용자들이 많습니다. 이러한 불편함</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0276.html">발산 노래방 내돈내산과 마포 코인노래방 방음 시설 비교 가이드 확인하기</a>
+        <p class="post-item__summary">여러분은 노래를 부를 때 옆 방에서 들려오는 소음으로 인해 몰입이 깨진 경험이 있으신가요? 많은 분들이 발산 노래방 내돈내산 후기를 살피며 시설의 쾌적함을 우선순위에 두지만, 실질적인 방음 성능은 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0277.html">발산 노래방 내돈내산 경험으로 본 원문 보기 전략</a>
+        <p class="post-item__summary">일상에서 즐겨 찾는 발산 노래방 내돈내산 방문기처럼, 온라인 콘텐츠 또한 투명한 신뢰도를 확보하는 과정이 중요합니다. 최근 웹사이트가 검색 엔진으로부터 페널티를 받았다면, 이는 단순히 운의 문제가 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0278.html">발산 노래방 내돈내산과 비교하는 마포 럭셔리 단체 가라오케 예약 가이드 선택 기준</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 정보를 찾다 보면 자연스럽게 인근 지역의 유흥 문화와 서비스 수준을 비교하게 됩니다. 특히 격식이 필요한 비즈니스 모임이나 VIP 단체 행사를 준비할 때는 단순히 저렴한 곳보다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0279.html">발산 노래방 내돈내산 분석을 통한 마포 셔츠룸 리얼 후기 소셜 마케팅 가이드 전략</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 후기들이 사용자들에게 강력한 영향력을 발휘하는 이유는 그 내용의 진실성 때문입니다. 마케팅 영역에서도 마찬가지로, 대중은 가공된 광고보다 실제 경험이 담긴 이야기에 더욱 민감하</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0280.html">발산 노래방 내돈내산 후기 검증과 해당 사이트 활용</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 경험담을 검색하는 사용자들은 신뢰할 수 있는 정보를 최우선으로 찾습니다. 이는 단순히 방문객의 취향을 넘어, 해당 정보가 얼마나 깨끗하게 정화된 경로를 통해 전달되는지가 중요함</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0281.html">발산 노래방 내돈내산 경험으로 배우는 자동화 코딩 스쿨 가이드</a>
+        <p class="post-item__summary">어느 평일 저녁, 지인들과 발산 노래방 내돈내산 후기를 공유하던 중 업무 효율화에 대한 이야기가 화두에 올랐습니다. 반복되는 단순 작업에서 벗어나 시스템을 구축하려는 사람들은 넘쳐나지만, 정작 무엇</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0282.html">발산 노래방 내돈내산 이후 알아보는 마포 셔츠룸 예약 시 눈탱이 피하는 법</a>
+        <p class="post-item__summary">흔히 유흥 업소를 이용할 때 비용이 무조건 높아야 좋은 서비스를 받는다는 오해를 하곤 합니다. 발산 노래방 내돈내산 경험을 돌이켜봐도 가격과 만족도는 반드시 비례하지 않으며, 이는 마포 지역의 셔츠</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0283.html">발산 노래방 내돈내산 후 얻은 통찰로 본 구글 틈새 키워드 트래픽 외환 거래 전략</a>
+        <p class="post-item__summary">정확한 데이터 분석, 적절한 진입 타이밍, 그리고 감정적 배제가 충족되어야만 투자 시장에서 생존할 수 있습니다. 최근 발산 노래방 내돈내산 리뷰를 분석하며 얻은 트래픽 데이터의 흐름은 외환 거래에서</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0284.html">발산 노래방 내돈내산 경험자가 짚어주는 셔츠룸 예약 팁과 셔츠룸 선정 기준</a>
+        <p class="post-item__summary">오늘 밤 즐거운 시간을 계획하고 계신가요? 과거 발산 노래방 내돈내산 경험을 통해 얻은 교훈 중 하나는, 모든 업장이 겉으로 보이는 홍보만큼 실제 만족도가 높지는 않다는 사실입니다. 수많은 업체 사</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0285.html">발산 노래방 내돈내산 경험으로 파악하는 셔츠룸 사이트 활용법</a>
+        <p class="post-item__summary">유흥 문화가 밀집된 지역에서 합리적인 업소를 선택하는 일은 쉬운 일이 아닙니다. 특히 발산 노래방 내돈내산 후기를 살피다 보면 광고성 정보와 실제 이용 경험이 혼재되어 혼란을 겪기 마련입니다. 객관</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0286.html">발산 노래방 내돈내산 기준보다 명확한 마포 홍대 단체 가라오케 예약 가이드</a>
+        <p class="post-item__summary">소규모 모임과 달리 단체 방문은 고려해야 할 변수가 매우 많습니다. 발산 노래방 내돈내산 정보처럼 개인 위주의 경험담만으로는 10인 이상의 단체 수용 능력이나 서비스 질을 온전히 판단하기 어렵습니다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0287.html">발산 노래방 내돈내산 후기만큼 중요한 구글 알고리즘 고신용 도메인 보증 카드 발급</a>
+        <p class="post-item__summary">온라인 비즈니스 운영에서 신뢰를 구축하는 과정은 물리적인 서비스 업체를 고르는 것만큼이나 복잡합니다. 발산 노래방 내돈내산 정보를 찾는 이들이 겪는 혼란처럼, 디지털 환경에서도 잘못된 정보를 선택하</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0288.html">발산 노래방 내돈내산 경험담으로 확인하는 구글 인덱싱 속도 초고속 광회선 대역폭 최적화 팁</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 방문 경험을 돌이켜보면 서비스의 접근성이 방문 만족도를 결정짓는 큰 요소였습니다. 디지털 정보 역시 마찬가지로, 사용자가 얼마나 빠르게 원하는 데이터에 도달할 수 있는지가 중요</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0289.html">발산 노래방 내돈내산 경험으로 파악하는 구글 신뢰 지수 모발이식 솔루션 전략</a>
+        <p class="post-item__summary">오랜만에 지인들과 함께 발산 노래방 내돈내산 방문을 계획하며 예약을 진행하던 중, 단순히 즐거움을 찾는 행위와 신뢰 가능한 정보를 찾는 과정이 닮았다는 사실을 깨달았습니다. 온라인상에 넘쳐나는 광고</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0286.html">발산 노래방 내돈내산 경험으로 보는 자세한 내용 분석</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 후기를 살피다 보면 종종 서비스의 본질적인 가치와 가격의 상관관계를 고민하게 됩니다. 소비자는 지불한 비용만큼의 만족을 얻고자 하며, 이는 단순히 시간을 보내는 공간을 넘어선 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0287.html">발산 노래방 내돈내산 방문 전 마포 홍대 로컬 럭셔리 밤문화 가이드 살피기</a>
+        <p class="post-item__summary">발산 노래방 내돈내산 경험을 쌓으려는 이들이 가장 먼저 범하는 실수는 정보가 부족한 상태에서 즉흥적으로 장소를 선정하는 것입니다. 특히 낯선 지역이나 고급 서비스를 기대하는 경우, 사전 준비 없이 </p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <span class="pager__current">1</span>
+      <a class="pager__link" href="posts-2.html">2</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
